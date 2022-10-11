@@ -25,7 +25,7 @@ In this project, we will explore a powerful feature used by command line program
 | `6-third_line`                  | Displays the third line of the file `iacta` |
 | `7-file`                        | creates a file named exactly `\*\\'"Best School"\'\\*$\?\*\*\*\*\*:)` containing the text `Best School` ending by a new line |
 | `8-cwd_state`                   | Writes into the file `ls_cwd_content` the result of the command `ls -la`. If the file `ls_cwd_content` already exists, it should be overwritten |
-
+| `Duplicates_the_last_line_of_the`                 | Deletes all the regular files with a `.js` extension that are present in the current directory and all its subfolders |
 | `10-no_more_js`                 | Deletes all the regular files with a `.js` extension that are present in the current directory and all its subfolders |
 | `11-directories`                | Counts the number of directories and sub-directories in the current directory |
 | `12-newest_files`               | Displays the 10 newest files in the current directory |
@@ -43,4 +43,3 @@ In this project, we will explore a powerful feature used by command line program
 | `101-gifs`                      | Lists all the files with a `.gif` extension in the current directory and all its sub-directories |
 | `102-acrostic`                  | Decodes acrostics that use the first letter of each line |
 | `103-the_biggest_fan`           | Parses web servers in TSV format as input and displays the 11 hosts or IP addresses which did the most requests |
-
