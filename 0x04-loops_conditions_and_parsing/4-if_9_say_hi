@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# script that displays Best School 10 times, but for the 9th iteration,
+# displays Best School and then Hi on a new line.
+
+# A variable is initialized to 1
+i=1
+
+# While the variable is less than or equal to 10, the loop will continue
+while [ $i -le 10 ]
+do
+	# when the variable is equal to 9, print "Best School" and "Hi"
+	# on a new line. Otherwise, print "Best School"
+	if [ $i -eq 9 ]
+	then
+		echo -e "Best School \n Hi"
+	else
+		echo "Best School"
+	fi
+
+	# Increment the variable by 1
+	(( i++ ))
+done
