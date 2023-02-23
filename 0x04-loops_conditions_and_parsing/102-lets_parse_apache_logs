@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script is displaying the size of the body of the response
+
+awk '{print $1, $9}' /var/log/apache2/apache-access.log
