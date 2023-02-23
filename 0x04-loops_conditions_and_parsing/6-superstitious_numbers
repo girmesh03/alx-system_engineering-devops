@@ -11,19 +11,22 @@ i=1
 # loop from 1 to 20
 while [ $i -le 20 ]
 do
+	# if the loop counter is 4, 9, or 17
 	case $i in
 		4)
-			echo $i
-			echo "bad luck from China";;
+			echo -e "$i\nbad luck from China"
+			;;
 		9)
-			echo $i
-			echo "bad luck from Japan";;
+			echo -e "$i\nbad luck from Japan"
+			;;
 		17)
-			echo $i
-			echo "bac luck from Italy";;
+			echo -e "$i\nbad luck from Italy"
+			;;
 		*)
 			echo $i
+			;;
 	esac
 
+	# increment the loop counter
 	i=$((i+1))
 done
