@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# This script is displaying the size of the body of the response
+awk '{print $1 " " $9}' apache-access.log | sort | uniq -c | awk '{print $1 " " $2 " " $3}' | sort -rn
