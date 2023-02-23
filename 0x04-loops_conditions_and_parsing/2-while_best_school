@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# This script is displaying "Best School" 10 times using while loop
+
+# A variable is initialized to 1
+i=1
+
+# While the variable is less than or equal to 10, the loop will continue
+while [ $i -le 10 ]
+do
+	# Print "Best School"
+	echo "Best School"
+	# Increment the variable by 1
+	(( i++ ))
+done
