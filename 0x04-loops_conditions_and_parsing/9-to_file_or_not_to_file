@@ -11,15 +11,15 @@
 # if the file is a regular file: school is a regular file
 # if the file is not a regular file: (nothing)
 
-file_name="school"
+FILE="school"
 
 # check if the file exists
-if [ -e $file_name ]
+if [ -e $FILE ]
 then
 	# print if the file exists
 	echo "school file exists"
 	# check if the file is empty or not
-	if [ ! -s $file_name ]
+	if [ ! -s $FILE ]
 	then
 		echo "school file is empty"
 	else
@@ -27,7 +27,7 @@ then
 	fi
 
 	# check if the file is a regular file
-	if [ -f $file_name ]
+	if [ -f $FILE ]
 	then
 		echo "school is a regular file"
 	fi
