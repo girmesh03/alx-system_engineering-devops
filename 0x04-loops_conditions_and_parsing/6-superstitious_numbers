@@ -10,24 +10,24 @@ i=1
 # loop from 1 to 20
 while [ $i -le 20 ]
 do
-# match the loop counter with the case
-case $i in
-4)
-	echo $i
-	echo "bad luck from China"
-	;;
-9)
-	echo $i
-	echo "bad luck from Japan"
-	;;
-17)
-	echo $i
-	echo "bad luck from Italy"
-	;;
-*)
-	echo $i
-	;;
-esac
-# increment the loop counter
-i=$((i+1))
+	# match the loop counter with the case
+	case $i in
+		4)
+			echo $i
+			echo "bad luck from China"
+			;;
+		9)
+			echo $i
+			echo "bad luck from Japan"
+			;;
+		17)
+			echo $i
+			echo "bad luck from Italy"
+			;;
+		*)
+			echo $i
+			;;
+	esac
+	# increment the loop counter
+	i=$((i+1))
 done
