@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 # A bash script that gives you information about the school file.
 # Requirements:
-	# You must use if and, else (case is forbidden)
-	# Your Bash script should check if the file exists and print:
-	# if the file exists: school file exists
-	# if the file does not exist: school file does not exist
-	# If the file exists, print:
-	# if the file is empty: school file is empty
-	# if the file is not empty: school file is not empty
-	# if the file is a regular file: school is a regular file
-	# if the file is not a regular file: (nothing)
+# You must use if and, else (case is forbidden)
+# Your Bash script should check if the file exists and print:
+# if the file exists: school file exists
+# if the file does not exist: school file does not exist
+# If the file exists, print:
+# if the file is empty: school file is empty
+# if the file is not empty: school file is not empty
+# if the file is a regular file: school is a regular file
+# if the file is not a regular file: (nothing)
 
-file_name=school
+file_name="school"
 
 # check if the file exists
 if [ -e $file_name ]
@@ -19,11 +19,11 @@ then
 	# print if the file exists
 	echo "school file exists"
 	# check if the file is empty or not
-	if [ -s $file_name ]
+	if [ ! -s $file_name ]
 	then
-		echo "school file is not empty"
-	else
 		echo "school file is empty"
+	else
+		echo "school file not is empty"
 	fi
 
 	# check if the file is a regular file
