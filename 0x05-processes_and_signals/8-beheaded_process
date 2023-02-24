@@ -2,4 +2,4 @@
 # A bash script that kills the process 7-highlander.
 
 # process using kill
-kill "$(pgrep -f '7-highlander')"
+kill -9 "$(pgrep -f '7-highlander')"
