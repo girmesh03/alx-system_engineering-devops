@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script displays To infinity and beyond
+
+# Initialize val to 1
+val=1
+
+# While val is equal to 1, display To infinity and beyond
+while [ $val -eq 1 ]
+do
+	echo "To infinity and beyond"
+done
+
