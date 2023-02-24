@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# A bash script that manages manage_my_process process.
+# A bash script that manages process.
 
 if [[ "$#" -eq 1 ]]
 then
@@ -28,7 +28,7 @@ then
 
 	fi
 else
-echo "Usage: manage_my_process {start|stop|restart}"
+	echo "Usage: manage_my_process {start|stop|restart}"
 fi
 
 
