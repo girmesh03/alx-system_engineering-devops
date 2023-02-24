@@ -8,5 +8,6 @@ val=1
 while [ $val -eq 1 ]
 do
 	echo "To infinity and beyond"
+	sleep 2
 done
 
