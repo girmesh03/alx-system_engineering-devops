@@ -2,4 +2,4 @@
 # This script is displaying a list of currently running processes
 # Displays every process on the system using BSD syntax
 
-ps -aux
+ps aux
