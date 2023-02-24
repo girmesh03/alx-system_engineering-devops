@@ -1,20 +1,5 @@
 #!/usr/bin/env bash
+# A bash script that stops 4-to_infinity_and_beyond process.
 
-# Get the process ID of the 4-to_infinity_and_beyond process
-PID=$(ps -ef | grep "4-to_infinity_and_beyond" | grep -v grep | awk '{print $2}')
-
-# Check if the process ID exists
-if [ -z "$PID" ]; then
-  echo "Process not found"
-else
-  # Send a SIGTERM signal to the process to terminate it gracefully
-  echo "Terminating process $PID"
-  kill -SIGTERM "$PID"
-
-  # Wait for the process to exit
-  while [ -e "/proc/$PID" ]; do
-    sleep 1
-  done
-
-  echo "Process terminated"
-fi
+# process using pkill
+pkill -f "4-to_infinity_and_beyond"
