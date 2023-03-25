@@ -78,29 +78,4 @@ In conclusion, designing a web infrastructure requires careful consideration of 
 
 ## Author:
 
-- **Girmachew Zewdie** - [girmesh03](github.com/girmesh03)
-
-
-
-
-
-
-
-
-
-
-SPOF
-Downtime when maintenance needed (like deploying new code web server needs to be restarted)
-Cannot scale if too much incoming traffic
-Security issues (no firewall, no HTTPS)
-No monitoring
-Why terminating SSL at the load balancer level is an issue
-Why having only one MySQL server capable of accepting writes is an issue
-Why having servers with all the same components (database, web server and application server) might be a problem
-
-
-- DNS: A DNS server is used to resolve domain names to IP addresses. The DNS server used in this design is Bind, a popular open-source DNS server.
-
-- Monitoring: Monitoring is used to track the health of the infrastructure and alert administrators when issues arise. The infrastructure has two monitoring systems that are configured to monitor the health of the servers and alert administrators when issues arise.
-
-- MySQL 
+- **Girmachew Zewdie** - [Github](github.com/girmesh03)
