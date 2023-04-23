@@ -5,7 +5,7 @@
 file_line { 'Turn off passwd auth':
   path  => '/etc/ssh/sshd_config',
   line  => 'PasswordAuthentication no',
-  match => '^#?PasswordAuthentication\s+(yes|no)',
+  match => '^#?PasswordAuthentication\s+ no$',
 }
 
 file_line { 'Declare identity file':
