@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Transfer a file to a remote server using scp
 if [ $# -ge 3 ]
 then
