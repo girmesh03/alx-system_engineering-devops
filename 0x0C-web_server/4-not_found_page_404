@@ -1,21 +1,15 @@
 #!/usr/bin/env bash
-# Add a custom 404 page
-STRING="Hello World!"
+# Configure Nginx server to have a custom 404 page that contains the string Ceci n'est pas une page
+sudo apt-get update
+sudo apt-get install -y nginx
 
-REDIRECT="\n\tlocation /redirect_me {\n\t\treturn 301 https://youtu.be/dQw4w9WgXcQ;\n\t}\n"
-FILE="/etc/nginx/sites-available/default"
+echo "Hello World!" > /var/www/html/index.html
 
-ERRORFILE="/usr/share/nginx/html/404error.html"
-FOUR="Ceci n'est pas une page"
-ERRORREDIRECT="\n\terror_page 404 /404error.html;\n\tlocation = /404error.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}\n"
+string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.google.com permanent;"
+sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
-apt-get -y update
-apt-get -y install nginx
-ufw allow 'Nginx HTTP'
-echo "$STRING" > /var/www/html/index.nginx-debian.html
-sed -i "37i\ $REDIRECT" "$FILE"
-
-echo "$FOUR" > "$ERRORFILE"
-sed -i "37i\ $ERRORREDIRECT" "$FILE"
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+string_for_replacement="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+sudo sed -i "s/listen 80 default_server;/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
 service nginx restart
