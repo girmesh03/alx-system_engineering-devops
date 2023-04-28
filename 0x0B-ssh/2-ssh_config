@@ -1,5 +1,5 @@
 Host myserver
-    Hostname 54.85.19.232
+    Hostname 100.25.167.139
     User ubuntu
     IdentityFile ~/.ssh/school
     PasswordAuthentication no
