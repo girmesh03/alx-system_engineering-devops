@@ -4,7 +4,9 @@ apt-get update
 apt-get install nginx -y
 
 # Configure nginx
-sed -i 's/^.*root.*$/root \/var\/www\/html;/' /etc/nginx/sites-enabled/default
+sed -i 's/root \/var\/www\/html;/root \/var\/www\/html; index index.html;/g' /etc/nginx/sites-enabled/default
+
+# Create index.html file
 echo "Hello World!" > /var/www/html/index.html
 
 # Restart nginx
