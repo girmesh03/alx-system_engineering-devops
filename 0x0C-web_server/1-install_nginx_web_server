@@ -3,8 +3,9 @@
 apt-get update
 apt-get install nginx -y
 
-# Configure nginx at server side
-echo "Hello World!" > /etc/nginx/html/index.html
+# Configure nginx
+sed -i 's/^.*root.*$/root \/var\/www\/html;/' /etc/nginx/sites-enabled/default
+echo "Hello World!" > /var/www/html/index.html
 
-# Start nginx
+# Restart nginx
 /etc/init.d/nginx restart
