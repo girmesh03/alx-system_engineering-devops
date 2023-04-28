@@ -4,7 +4,7 @@ apt-get update
 apt-get install nginx -y
 
 # create directories
-mkdir -p /etc/nginx/html
+mkdir /etc/nginx/html
 
 # Configure nginx at server side
 echo "Hello World!" > /etc/nginx/html/index.html
