@@ -10,5 +10,5 @@ echo "Hello World!" > /var/www/html/index.html
 string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.google.com permanent;"
 sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
-# reload nginx
-sudo /etc/init.d/nginx reload
+# Restart nginx
+nginx -s reload
