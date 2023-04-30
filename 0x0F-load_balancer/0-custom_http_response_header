@@ -19,4 +19,4 @@ sudo sed -i "s/listen 80 default_server;/$string_for_replacement/" /etc/nginx/si
 # code for http_response_header
 sudo sed -i '/^http {/a \\tadd_header X-Served-By $hostname;' /etc/nginx/nginx.conf
 
-sudo /etc/init.d/nginx reload
+nginx -s reload
