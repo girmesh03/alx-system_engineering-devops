@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 # Redirect a page
 
-# Install nginx
-sudo apt-get update
-sudo apt-get install nginx -y
+REDIRECT="\n\tlocation /redirect_me {\n\t\treturn 301 https://youtube.com; \n\t}\n"
+FILE="/etc/nginx/sites-available/default"
 
-# Create index.html file
+apt-get -y update
+apt-get -y install nginx
+
+ufw allow 'Nginx HTTP'
+
 echo "Hello World!" > /var/www/html/index.html
-
-# now let's redirect a page to another page
-string="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com permanent;"
-sudo sed -i "s/server_name _;/$string/" /etc/nginx/sites-enabled/default
+sed -i "10i\ $REDIRECT" "$FILE"
 
 # reload nginx
 sudo /etc/init.d/nginx reload
