@@ -9,7 +9,8 @@ sudo apt-get install nginx -y
 echo "Hello World!" > /var/www/html/index.html
 
 # now let's redirect a page to another page
-sudo sed -i '/server_name _;/a\ \tlocation /redirect_me {\n\t\treturn 301 https:\/\/www.youtube.com\/results?search_query=girmachew+zewdie;\n\t}' /etc/nginx/sites-available/default
+string="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com permanent;"
+sudo sed -i "s/server_name _;/$string/" /etc/nginx/sites-available/default
 
 # reload nginx
 sudo /etc/init.d/nginx reload
