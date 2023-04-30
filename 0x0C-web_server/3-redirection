@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 # Redirect a page
-STRING="Hello World!"
-REDIRECT="\n\tlocation /redirect_me {\n\t\treturn 301 https://youtu.be/dQw4w9WgXcQ; \n\t}\n"
-FILE="/etc/nginx/sites-available/default"
-apt-get -y update
-apt-get -y install nginx
-ufw allow 'Nginx HTTP'
-echo "$STRING" > /var/www/html/index.nginx-debian.html
-sed -i "37i\ $REDIRECT" "$FILE"
-service nginx restart
+
+# Install nginx
+sudo apt-get update
+sudo apt-get install nginx -y
+
+# Create index.html file
+echo "Hello World!" > /var/www/html/index.html
+
+# now let's redirect a page to another page
+string="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com permanent;"
+sudo sed -i "s/server_name _;/$string/" /etc/nginx/sites-enabled/default
+
+# reload nginx
+sudo /etc/init.d/nginx reload
