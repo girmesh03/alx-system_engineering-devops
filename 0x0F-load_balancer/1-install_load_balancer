@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Install HAProxy
 sudo apt-get update
 sudo apt-get install -y haproxy
@@ -16,10 +15,10 @@ backend http_back
     balance roundrobin
     server 160306-web-01 100.25.167.139:80 check
     server 160306-web-02 54.172.232.30:80 check
-">> /etc/haproxy/haproxy.cfg
+" | sudo tee /etc/haproxy/haproxy.cfg > /dev/null
 
 # Enable HAProxy init script
 sudo sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/haproxy
 
 # Start HAProxy service
-sudo service haproxy start
+sudo service haproxy restart
