@@ -10,7 +10,7 @@ package { 'nginx':
 
 file_line { 'header':
     path  => '/etc/nginx/nginx.conf',
-    match => '^http {',
+    match => 'http {',
     line  => "http {\n\tadd_header X-Served-By \"${hostname}\";",
 }
 
