@@ -5,14 +5,16 @@ class nginx {
     ensure => installed,
   }
 
-  file { '/etc/nginx/conf.d/custom_header.conf':
-    content => "add_header X-Served-By $::hostname;\n",
+  file { 'add_http_header':
+    path    => '/etc/nginx/nginx.conf',
+    match   => 'http {',
+    content => "http {\n\tadd_header X-Frame-Options \"${hostname}\";\n",
     notify  => Service['nginx'],
   }
 
   service { 'nginx':
-    ensure => running,
-    enable => true,
+    ensure  => running,
+    enable  => true,
     require => Package['nginx'],
   }
 }
