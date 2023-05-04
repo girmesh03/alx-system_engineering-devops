@@ -15,8 +15,11 @@ frontend http_front
     redirect scheme https if !{ ssl_fc }
 
 frontend https_front
-    bind *:443 ssl crt /etc/letsencrypt/live/www.example.com/fullchain.pem
+    bind *:443 ssl crt /etc/letsencrypt/live/www.girmesh.tech.pem
+    redirect scheme https if !{ ssl_fc }
     default_backend http_back
 
 backend http_back
     balance roundrobin
+    server 160306-web-01 100.25.167.139:80 check
+    server 160306-web-01 54.172.232.30:80 check
