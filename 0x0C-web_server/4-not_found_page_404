@@ -5,18 +5,20 @@
 sudo apt-get update
 sudo apt-get install -y nginx
 
-# Creating simple HTML page
+# Creating Sample Page
 echo "Hello World!" > /var/www/html/index.html
 
-# add configuration server block
-string="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.facebook.com permanent;"
-sudo sed -i "s/server_name _;/$string/" /etc/nginx/sites-available/default
+# Create a redirection
+replacement="server_name _;\n\trewrite \/redirect_me https:\/\/www.facebook.com permanent;"
+sudo sed -i "s/server_name _;/$replacement/" /etc/nginx/sites-available/default
 
 # redirect error 404
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
-string="permanent;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+string="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
 
-sudo sed -i "s/permanent;/$string/" /etc/nginx/sites-available/default
+# replace the line
+sudo sed -i "s/listen 80 default_server;/$string/" /etc/nginx/sites-available/default
 
+# restart nginx
 sudo service nginx restart
