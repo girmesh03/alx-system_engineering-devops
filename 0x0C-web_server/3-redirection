@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
-# Install nginx and write "Hello World" to /var/www/html/index.html
+# Redirect a page permanently
+
+# Install nginx
 sudo apt-get update
 sudo apt-get install nginx -y
 echo "Hello World!" > /var/www/html/index.html
 
 # Create a redirection
-sudo sed -i "9i\ \n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/www.facebook.com\/;\n}" /etc/nginx/sites-enabled/default
+LINK="\n\tlocation /redirect_me {\n\t\treturn 301 https://facebook.com; \n\t}\n"
+sudo sed -i "9i\ $LINK" /etc/nginx/sites-available/default
 
 # restart nginx
 sudo service nginx restart
