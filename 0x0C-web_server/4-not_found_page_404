@@ -9,7 +9,7 @@ sudo apt-get install -y nginx
 echo "Hello World!" > /var/www/html/index.html
 
 # add configuration server block
-string="server_name _;\n\trewrite \/redirect_me https:\/\/www.facebook.com permanent;"
+string="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.facebook.com permanent;"
 sudo sed -i "s/server_name _;/$string/" /etc/nginx/sites-available/default
 
 # redirect error 404
