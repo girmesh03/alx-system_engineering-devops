@@ -4,11 +4,9 @@
 # Write a custom 404 html page
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
-# custom 404 page
-replacement="\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+string="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
 
-# add custom 404 page to nginx config
-sed -i "s/permanent;/&\n$replacement/" /etc/nginx/sites-available/default
+sudo sed -i "s/listen 80 default_server;/$string/" /etc/nginx/sites-available/default
 
 # restart nginx
 sudo service nginx restart
