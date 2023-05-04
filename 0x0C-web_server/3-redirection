@@ -5,7 +5,7 @@ sudo apt-get install nginx -y
 echo "Hello World!" > /var/www/html/index.html
 
 # Create a redirection
-sudo sed -i "9i\ \n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/www.facebook.com\/;\n\t}" /etc/nginx/sites-available/default
+sudo sed -i "9i\ \n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/www.facebook.com\/;\n}" /etc/nginx/sites-enabled/default
 
 # restart nginx
 sudo service nginx restart
