@@ -9,14 +9,14 @@ sudo apt-get install -y nginx
 echo "Hello World!" > /var/www/html/index.html
 
 # add configuration server block
-string="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.google.com permanent;"
-sudo sed -i "s/server_name _;/$string/" /etc/nginx/sites-enabled/default
+string="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.facebook.com permanent;"
+sudo sed -i "s/server_name _;/$string/" /etc/nginx/sites-available/default
 
 # redirect error 404
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
 string="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
 
-sudo sed -i "s/listen 80 default_server;/$string/" /etc/nginx/sites-enabled/default
+sudo sed -i "s/listen 80 default_server;/$string/" /etc/nginx/sites-available/default
 
 sudo service nginx restart
