@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # Redirect a page permanently
 
+Install nginx
+sudo apt-get update
+sudo apt-get install nginx -y
+echo "Hello World!" > /var/www/html/index.html
+
 # Create a redirection
 replacement="server_name _;\n\trewrite \/redirect_me https:\/\/www.facebook.com permanent;"
 sudo sed -i "s/server_name _;/$replacement/" /etc/nginx/sites-available/default
