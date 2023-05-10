@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 # Redirect a page permanently
 
-Install nginx
+# get number of lines in file
+file="/etc/nginx/sites-available/default"
+num_lines=$(wc -l < "$file")
+
+# Install nginx
 sudo apt-get update
 sudo apt-get install nginx -y
 echo "Hello World!" > /var/www/html/index.html
 
 # Create a redirection
-replacement="server_name _;\n\trewrite \/redirect_me https:\/\/www.facebook.com permanent;"
-sudo sed -i "s/server_name _;/$replacement/" /etc/nginx/sites-available/default
+redirect="\n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/www.youtube.com/channel/UCFIeOCkSji4zeTbh6JrVZzQ;\n\t}\n"
+
+sudo sed -i "${num_lines}i\\${redirect}" $file
 
 # restart nginx
 sudo service nginx restart
