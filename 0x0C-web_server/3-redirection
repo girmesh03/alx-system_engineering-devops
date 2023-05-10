@@ -11,8 +11,7 @@ sudo apt-get install nginx -y
 echo "Hello World!" > /var/www/html/index.html
 
 # Create a redirection
-redirect="\n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/www.youtube.com/channel/UCFIeOCkSji4zeTbh6JrVZzQ;\n\t}\n"
-
+redirect="\n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/www.youtube.com\/\@EthioKnowledge;\n\t}\n"
 sudo sed -i "${num_lines}i\\${redirect}" $file
 
 # restart nginx
