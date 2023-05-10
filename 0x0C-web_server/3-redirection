@@ -7,8 +7,8 @@ echo "Hello World!" > /var/www/html/index.html
 ufw allow 'Nginx HTTP'
 
 # Create a redirection
-REDIRECT="\n\tlocation /redirect_me {\n\t\treturn 301 https://youtu.be/dQw4w9WgXcQ;\n\t}"
-sed -i "/server_name _;/a\\$REDIRECT" /etc/nginx/sites-available/default
+redirect="\n\tlocation /redirect_me {\n\t\treturn 301 https://youtu.be/dQw4w9WgXcQ;\n\t}"
+sed -i "/server_name _;/a\\$redirect" /etc/nginx/sites-available/default
 
 # Restart Nginx to apply the changes
 sudo service nginx restart
