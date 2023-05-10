@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
 # Redirect a page permanently
 
-# get number of lines in file
-file="/etc/nginx/sites-available/default"
-num_lines=$(wc -l < "$file")
-
 # Install nginx
 sudo apt-get update
 sudo apt-get install nginx -y
 echo "Hello World!" > /var/www/html/index.html
 
 # Create a redirection
-REDIRECT="\n\tlocation /redirect_me {\n\t\treturn 301 https://youtu.be/dQw4w9WgXcQ; \n\t}\n"
-sed -i "$num_lines i\ $REDIRECT" "$file"
-
+FILE="/etc/nginx/sites-available/default"
+REDIRECT="\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/@EthioKnowledge;\n\t}\n"
+sed -i "11i\ $REDIRECT" "$FILE"
 
 # restart nginx
 sudo service nginx restart
