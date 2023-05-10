@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Redirect a page permanently
 
-redirect="\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4; \n\t}\n"
+redirect="\n\tlocation /redirect_me {\n\t\treturn 301 https://youtu.be/dQw4w9WgXcQ; \n\t}\n"
 file_path="/etc/nginx/sites-available/default"
 
 # Install nginx
-apt-get update
+apt-get -y update
 apt-get -y install nginx
 ufw allow 'Nginx HTTP'
 
