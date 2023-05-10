@@ -1,14 +1,21 @@
 #!/usr/bin/env bash
 # Redirect a page permanently
-redirect="\n\tlocation /redirect_me {\n\t\treturn 301 https://youtu.be/dQw4w9WgXcQ; \n\t}\n"
-file_path="/etc/nginx/sites-available/default"
-# Install nginx
-sudo apt-get update
-sudo apt-get install nginx -y
+
+# Install Nginx web server
+apt-get update
+apt-get install -y nginx
 ufw allow 'Nginx HTTP'
 
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
-sed -i "11i\ $redirect" "$file_path"
 
+# Replace the default Nginx configuration with our custom configuration
+sed -i 's/server_name _;/server_name girmesh.tech;/' /etc/nginx/sites-available/default
+sed -i '/server_name example.com;/a \
+\
+    location /redirect_me {\
+        return 301 https://youtu.be/dQw4w9WgXcQ;\
+    }' /etc/nginx/sites-available/default
+
+# Restart Nginx to apply the changes
 sudo service nginx restart
 
