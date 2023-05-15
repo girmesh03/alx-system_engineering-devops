@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# install the ufw firewall and setup a few rules on web-01.
+
+# check if ufw is installed
+if ! which ufw >/dev/null 2>&1; then
+    sudo apt-get update -y
+    sudo apt-get install ufw -y
+fi
+
+# reset ufw to default settings
+sudo ufw reset
+
+# setup rules for ufw
+# deny all incoming traffic
+sudo ufw default deny incoming
+
+# allow all outgoing traffic. since it's by default allowed, we don't need to do anything
+# sudo ufw default allow outgoing
+
+# except for ports 22, 443, and 80
+sudo ufw allow ssh # allow ssh on port 22
+sudo ufw allow https # allow https on port 443
+sudo ufw allow http # allow http on port 80
+
+# start and enable ufw
+sudo service ufw start
+sudo systemctl enable ufw
