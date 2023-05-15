@@ -8,7 +8,7 @@ if ! which ufw >/dev/null 2>&1; then
 fi
 
 # reset ufw to default settings
-sudo ufw reset
+sudo ufw --force reset
 
 # setup rules for ufw
 # deny all incoming traffic
@@ -24,4 +24,4 @@ sudo ufw allow http # allow http on port 80
 
 # start and enable ufw
 sudo service ufw start
-sudo ufw enable
+sudo ufw --force enable
