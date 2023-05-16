@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Disables port forwarding from port 8080 to port 80
+
+# Delete ufw rule
+sudo ufw delete allow 8080/tcp
+
+# Delete iptables rule
+sudo iptables -t nat -D PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
+
+# Save iptables configuration with silent mode
+sudo iptables-save | sudo tee /etc/iptables.sav > /dev/null
+
+# Reload ufw to apply the changes
+sudo ufw --force reload
