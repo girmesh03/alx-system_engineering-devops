@@ -13,5 +13,8 @@ sudo chmod 644 /etc/nginx/nginx.conf
 # Update Nginx configuration to listen on all active IPs on port 8080
 sudo sed -i 's/80/8080/g' /etc/nginx/sites-available/default
 
+# kill apache2 process
+pkill apache2
+
 # Start Nginx
 sudo -u nginx service nginx start
