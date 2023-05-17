@@ -1,0 +1,14 @@
+#!/usr/bin/evn bash
+# A bash script that configures Nginx to run as the nginx user
+
+# Stop Nginx if it is already running
+sudo service nginx stop
+
+# Configure Nginx to run as the nginx user
+sudo sed -i 's/user\s*\(.*\);/user nginx;/' /etc/nginx/nginx.conf
+
+# Update Nginx configuration to listen on all active IPs on port 8080
+sudo sed -i 's/listen\s*\(.*\);/listen 8080;/' /etc/nginx/sites-available/default
+
+# Start Nginx
+sudo service nginx start
