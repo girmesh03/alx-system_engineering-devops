@@ -5,13 +5,13 @@
 sudo service nginx stop
 
 # Configure Nginx to run as the nginx user
-sudo sed -i 's/user www-data/user nginx/' /etc/nginx/nginx.conf
+sudo sed -i 's/user\s*\(.*\);/user nginx;/' /etc/nginx/nginx.conf
 
 # Change permissions of /etc/nginx/nginx.conf to 644
 sudo chmod 644 /etc/nginx/nginx.conf
 
 # Update Nginx configuration to listen on all active IPs on port 8080
-sudo sed -i 's/80/8080/g' /etc/nginx/sites-available/default
+sudo sed -i 's/listen\s*\(.*\);/listen 8080;/' /etc/nginx/sites-available/default
 
 # kill apache2 process
 pkill apache2
