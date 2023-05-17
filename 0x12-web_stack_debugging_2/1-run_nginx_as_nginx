@@ -1,20 +1,22 @@
-#!/usr/bin/env bash
-# Run Nginx as Nginx
+#!/usr/bin/evn bash
+# A bash script that configures Nginx to run as the nginx user
 
-# Stop nginx if it's currently running
+# Stop Nginx if it is already running
 sudo service nginx stop
 
-# Change nginx user in nginx.conf
-sed -i 's/user www-data/user nginx/' /etc/nginx/nginx.conf
+# Configure Nginx to run as the nginx user
+sudo sed -i 's/user www-data/user nginx/' /etc/nginx/nginx.conf
 
-# Change ownership of nginx directories to nginx user
+# Change ownership of /etc/nginx/nginx.conf to the nginx user
+# sudo chown -R nginx:nginx /etc/nginx/nginx.conf
 chmod 644 /etc/nginx/nginx.conf
 
-# Configure nginx to listen on all active IPs on port 8080
-sed -i 's/80/8080/g' /etc/nginx/sites-available/default
+# Update Nginx configuration to listen on port 8080 instead of 80
+sudo sed -i 's/80/8080/g' /etc/nginx/sites-available/default
 
-# apache may interfere with nginx so kill the process if it is running
+# kill the Apache process
 pkill apache2
 
-# Start nginx
+# Start Nginx
 sudo -u nginx service nginx start
+
