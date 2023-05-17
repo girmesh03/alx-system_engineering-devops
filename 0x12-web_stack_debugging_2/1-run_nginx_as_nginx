@@ -2,13 +2,16 @@
 # A bash script that configures Nginx to run as the nginx user
 
 # Stop Nginx if it is already running
-service nginx stop
+sudo service nginx stop
 
 # Configure Nginx to run as the nginx user
 sed -i 's/user\s*\(.*\);/user nginx;/' /etc/nginx/nginx.conf
+
+# Change permissions of /etc/nginx/nginx.conf to 644
+chmod 644 /etc/nginx/nginx.conf
 
 # Update Nginx configuration to listen on all active IPs on port 8080
 sed -i 's/listen\s*\(.*\);/listen 8080;/' /etc/nginx/sites-available/default
 
 # Start Nginx
-service nginx start
+sudo -u nginx service nginx start
