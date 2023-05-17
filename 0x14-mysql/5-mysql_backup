@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Bash script that generates a MySQL backup
+
+# Get current date
+current_date=$(date +'%d-%m-%Y')
+
+# MySQL dump file name
+dump_file="backup.sql"
+
+# MySQL root password (passed as argument)
+password=$1
+
+# Perform MySQL dump
+mysqldump -u root -p$password --all-databases > $dump_file
+
+# Check if the dump was successful
+if [ $? -eq 0 ]; then
+    echo "MySQL dump created successfully."
+else
+    echo "MySQL dump failed."
+    exit 1
+fi
+
+# Compress the dump file
+tar -czvf $current_date.tar.gz $dump_file
+
+# Check if the compression was successful
+if [ $? -eq 0 ]; then
+    echo "MySQL dump compressed successfully."
+else
+    echo "MySQL dump compression failed."
+    exit 1
+fi
+
+# Remove the original dump file
+# rm $dump_file
+
+# Display the created archive
+ls -l $current_date.tar.gz
