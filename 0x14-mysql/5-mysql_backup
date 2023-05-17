@@ -14,26 +14,26 @@ password=$1
 mysqldump -u root -p$password --all-databases > $dump_file
 
 # Check if the dump was successful
-if [ $? -eq 0 ]; then
-    echo "MySQL dump created successfully."
-else
-    echo "MySQL dump failed."
-    exit 1
-fi
+# if [ $? -eq 0 ]; then
+#     echo "MySQL dump created successfully."
+# else
+#     echo "MySQL dump failed."
+#     exit 1
+# fi
 
 # Compress the dump file
-tar -czvf $current_date.tar.gz $dump_file
+tar -czf $current_date.tar.gz $dump_file
 
 # Check if the compression was successful
-if [ $? -eq 0 ]; then
-    echo "MySQL dump compressed successfully."
-else
-    echo "MySQL dump compression failed."
-    exit 1
-fi
+# if [ $? -eq 0 ]; then
+#     echo "MySQL dump compressed successfully."
+# else
+#     echo "MySQL dump compression failed."
+#     exit 1
+# fi
 
 # Remove the original dump file
 # rm $dump_file
 
 # Display the created archive
-ls -l $current_date.tar.gz
+# ls -l $current_date.tar.gz
