@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Gather data from an API and returns a todo based on the given user id"""
+"""Gather data from an API and returns a todo based on the given user id."""
 import requests
 import sys
 
