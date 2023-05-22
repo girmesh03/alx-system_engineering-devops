@@ -5,7 +5,10 @@ Uses the JSON placeholder api to query data about an employee
 import requests
 import sys
 
+
 if __name__ == "__main__":
+    """Returns information about an employee's TODO"""
+
     base_url = 'https://jsonplaceholder.typicode.com/'
     user_url = f"{base_url}users/{sys.argv[1]}"
     todos_url = f"{base_url}todos?userId={sys.argv[1]}"
