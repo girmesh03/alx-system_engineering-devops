@@ -4,13 +4,13 @@ import requests
 import sys
 
 if __name__ == "__main__":
+    """Gather data from an API"""
     url = "https://jsonplaceholder.typicode.com/"
-    name = requests.get("{}users/{}".format(url, sys.argv[1])).json()
-    tasks = requests.get("{}users/{}/todos".format(url, sys.argv[1])).json()
-    c_tasks = [task for task in tasks if task.get("completed") is True]
-    titles = [task.get("title") for task in tasks
-              if task.get("completed") is True]
-    print("Employee {} is done with tasks({}/{}):"
-          .format(name.get("name"), len(c_tasks), len(tasks)))
-    for title in titles:
-        print("\t {}".format(title))
+    user_id = sys.argv[1]
+    user = requests.get(url + "users/{}".format(user_id)).json()
+    todo = requests.get(url + "todos", params={"userId": user_id}).json()
+    completed = [task for task in todo if task.get("completed") is True]
+    print("Employee {} is done with tasks({}/{}):".format(
+        user.get("name"), len(completed), len(todo)))
+    for task in completed:
+        print("\t {}".format(task.get("title")))
