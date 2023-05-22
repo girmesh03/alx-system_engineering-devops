@@ -1,13 +1,9 @@
 #!/usr/bin/python3
-"""Gather data from an API"""
-
+"""Gather data from an API and Runs if the module is not imported"""
 import requests
 import sys
 
-
 if __name__ == "__main__":
-    """Gather data from an API and Runs if the module is not imported"""
-
     base_url = 'https://jsonplaceholder.typicode.com/'
     user_url = f"{base_url}users/{sys.argv[1]}"
     # print(user_url)
