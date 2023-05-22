@@ -7,22 +7,13 @@ import sys
 
 
 if __name__ == "__main__":
-    """Returns information about an employee's TODO"""
-
-    base_url = 'https://jsonplaceholder.typicode.com/'
-    user_url = f"{base_url}users/{sys.argv[1]}"
-    todos_url = f"{base_url}todos?userId={sys.argv[1]}"
-    user_name = requests.get(user_url).json()['name']
-    todos_data = requests.get(todos_url).json()
-    completed = 0
-    total = 0
-    completed_tasks = []
-    for task in todos_data:
-        total += 1
-        if task['completed']:
-            completed_tasks.append(task['title'])
-            completed += 1
-    print("Employee {} is done with tasks({}/{}):".format(
-        user_name, completed, total))
-    for task in completed_tasks:
-        print("\t {}".format(task))
+    user_id = sys.argv[1]
+    user = requests.get("https://jsonplaceholder.typicode.com/users/{}".
+                        format(user_id)).json()
+    todo = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}".
+                        format(user_id)).json()
+    completed = [task for task in todo if task.get("completed") is True]
+    print("Employee {} is done with tasks({}/{}):".
+          format(user.get("name"), len(completed), len(todo)))
+    for task in completed:
+        print("\t {}".format(task.get("title")))
