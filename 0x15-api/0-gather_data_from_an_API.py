@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Gather data from an API and returns a todo based on the given user id."""
+"""
+Uses the JSON placeholder api to query data about an employee
+"""
 import requests
 import sys
 
