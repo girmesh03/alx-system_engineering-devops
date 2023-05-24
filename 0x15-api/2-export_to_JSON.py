@@ -1,18 +1,16 @@
 #!/usr/bin/python3
 """Exports the data retrieved from the JSONPlaceholder API to JSON format"""
+
 import json
 import requests
 import sys
 
 
 if __name__ == "__main__":
-    # Get the user id
     user_id = sys.argv[1]
-    # Get the base url
     url = "https://jsonplaceholder.typicode.com/"
-    # Get the user and todo
-    user = requests.get(url + "users/{}".format(user_id)).json()
-    todo = requests.get(url + "users/{}/todos".format(user_id)).json()
+    user = requests.get("{}users/{}".format(url, user_id)).json()
+    todo = requests.get("{}users/{}/todos".format(url, user_id)).json()
 
     # Create a dictionary
     to_dict = {
