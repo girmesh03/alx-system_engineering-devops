@@ -22,5 +22,5 @@ if __name__ == "__main__":
     }
 
     # Save the dictionary in a json file
-    with open("{}.json".format(user_id), "w") as jsonfile:
+    with open("{}.json".format(user_id), "w", newline="") as jsonfile:
         json.dump(to_dict, jsonfile)
