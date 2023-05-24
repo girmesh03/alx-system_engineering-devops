@@ -6,19 +6,21 @@ import sys
 
 
 if __name__ == "__main__":
+    # Get the user id
     user_id = sys.argv[1]
+    # Get the base url
+    url = "https://jsonplaceholder.typicode.com/"
+    # Get the user and todo
+    user = requests.get(url + "users/{}".format(user_id)).json()
+    todo = requests.get(url + "users/{}/todos".format(user_id)).json()
 
-    user = requests.get("https://jsonplaceholder.typicode.com/users/{}".
-                        format(user_id)).json()
-    todo = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}".
-                        format(user_id)).json()
+    # Create a dictionary
+    to_dict = {
+        user_id: [{"task": task.get("title"),
+                   "completed": task.get("completed"),
+                   "username": user.get("username")} for task in todo]
+    }
 
-    to_json = {}
-    to_json[user_id] = []
-    for task in todo:
-        to_json[user_id].append({"task": task.get("title"),
-                                 "completed": task.get("completed"),
-                                 "username": user.get("username")})
-
+    # Save the dictionary in a json file
     with open("{}.json".format(user_id), "w") as jsonfile:
-        json.dump(to_json, jsonfile)
+        json.dump(to_dict, jsonfile)
