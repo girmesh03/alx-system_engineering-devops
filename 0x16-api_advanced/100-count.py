@@ -11,24 +11,31 @@ import requests
 
 
 def count_words(subreddit, word_list, array=None, after=""):
-    """parses the title of all hot articles, and
-    prints a sorted count of given keywords"""
-    if array is None:
-        array = [0] * len(word_list)
+    """parses the title of all hot articles,
+    and prints a sorted count of given keywords"""
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
+    headers = {'User-Agent': 'Mozilla/5.0'}
     params = {'after': after}
-    response = requests.get(url, headers=headers, params=params)
+    response = requests.get(url, headers=headers,
+                            params=params, allow_redirects=False)
     if response.status_code != 200:
         return
+    if array is None:
+        array = []
+        for word in word_list:
+            array.append([word, 0])
     for post in response.json().get('data').get('children'):
-        title = post.get('data').get('title')
-        for i in range(len(word_list)):
-            array[i] += title.lower().split(' ').count(word_list[i].lower())
+        title = post.get('data').get('title').lower().split()
+        for word in word_list:
+            for t in title:
+                if word.lower() == t:
+                    for a in array:
+                        if a[0] == word:
+                            a[1] += 1
     after = response.json().get('data').get('after')
     if after is None:
-        for i in range(len(word_list)):
-            if array[i] != 0:
-                print("{}: {}".format(word_list[i], array[i]))
+        for a in sorted(array, key=lambda x: x[1], reverse=True):
+            if a[1] != 0:
+                print("{}: {}".format(a[0], a[1]))
         return
     return count_words(subreddit, word_list, array, after)
